@@ -3,16 +3,18 @@ name: GitHub Pages
 on:
   push:
     branches:
-      - main  # 如果你的默认分支是master，改为master
+      - main  # 或 master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 关键权限
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true  # 获取主题子模块
-          fetch-depth: 0    # 获取所有历史记录以便LastMod等变量工作
+          submodules: true
+          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -28,4 +30,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: gh-pages  # 部署分支
+          publish_branch: gh-pages
+          force_orphan: true  # 强制创建分支
