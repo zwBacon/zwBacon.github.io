@@ -1,0 +1,4 @@
+baseURL = "https://zwBacon.github.io/"  # 如果是项目站点，非用户站点
+languageCode = "zh-cn"
+title = "Rookie Grow Blog"
+theme = "ananke"
